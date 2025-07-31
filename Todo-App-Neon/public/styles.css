@@ -1,0 +1,408 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Delius Swash Caps", cursive;
+  box-sizing: border-box;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: true;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes check-pop {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  40% {
+    transform: scale(1.4) rotate(-20deg);
+  }
+
+  65% {
+    transform: scale(1.1) rotate(7deg);
+  }
+
+  80% {
+    transform: scale(1.22) rotate(-2deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+:root {
+  --dark-bg: #0f0f1a;
+  --panel-bg: #1a1a2e;
+  --highlight-1: #00ffe5;
+  --highlight-2: #ff00a0;
+  --highlight-3: #00b3ff;
+  --text-light: #e4f9ff;
+  --accent-soft: #262837;
+  --delete-hover: #ff0033;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--dark-bg);
+  padding: 10px;
+}
+
+.todo-app {
+  max-width: 570px;
+  background: var(--panel-bg);
+  margin: auto;
+  padding: 40px 30px 70px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.todo-app h2 {
+  background-image: linear-gradient(180deg,
+      var(--highlight-1),
+      var(--highlight-3),
+      var(--highlight-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
+  font-size: 50px;
+  display: flex;
+  align-items: center;
+  margin: 0 0 20px 12px;
+  user-select: none;
+}
+
+.todo-app h2 img {
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  filter: drop-shadow(2px 2px 2px var(--highlight-1));
+}
+
+.todo-app-border {
+  position: relative;
+  border-radius: 20px;
+  background: conic-gradient(from var(--angle),
+      var(--highlight-1),
+      var(--highlight-2),
+      var(--highlight-3),
+      var(--highlight-1));
+  animation: spin 8s linear infinite;
+  max-width: 570px;
+  margin: 100px auto 20px;
+  padding: 5px;
+  filter: drop-shadow(1px 1px 5px var(--highlight-1));
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  background: var(--accent-soft);
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 25px;
+  caret-color: var(--highlight-2);
+}
+
+input {
+  flex: 1;
+  border: 2px solid transparent;
+  outline: none;
+  background: transparent;
+  color: var(--text-light);
+  font-size: 18px;
+  transition: border-color 0.3s ease;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 16px 50px;
+  background: var(--highlight-2);
+  color: var(--text-light);
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: background 0.5s ease;
+}
+
+button:hover {
+  background: var(--highlight-1);
+  color: #000;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  color: var(--highlight-1);
+  padding: 16px 24px;
+  user-select: none;
+  position: relative;
+  min-height: 57px;
+  box-sizing: border-box;
+  gap: 12px;
+}
+
+ul li .check-icon {
+  font-family: "Material Symbols Outlined";
+  font-variation-settings: "FILL" 0, "wght" 400, "opsz" 24;
+  font-size: 25px;
+  color: var(--highlight-3);
+  margin-right: 8px;
+  width: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform-origin: center center;
+  transition: color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+ul li .check-icon.check-pop-anim {
+  animation: check-pop 0.6s cubic-bezier(0.2, 1.4, 0.6, 0.98);
+  color: var(--highlight-2);
+}
+
+ul li .check-icon.icon-hovered {
+  transform: scale(1.2);
+}
+
+ul li.hovered .check-icon,
+ul li.checked .check-icon {
+  color: var(--highlight-2) !important;
+}
+
+ul li.hovered .task-text,
+ul li.checked .task-text {
+  color: var(--highlight-2);
+  text-decoration-line: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--highlight-2);
+}
+
+ul li .task-text {
+  position: relative;
+  display: inline-block;
+  transition: color 0.25s;
+  cursor: pointer;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+
+ul li .task-text-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+ul li .actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+ul li .edit-btn,
+ul li .delete-btn {
+  font-family: "Material Symbols Outlined";
+  font-variation-settings: "FILL" 0, "wght" 400, "opsz" 24;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  min-width: 36px;
+  min-height: 36px;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.5s, color 0.5s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  font-size: 22px;
+  color: var(--highlight-3);
+  background: transparent;
+  border: none;
+  position: static;
+}
+
+ul li .edit-btn {
+  right: 45px;
+  color: var(--highlight-3);
+}
+
+ul li .delete-btn {
+  right: 0;
+  color: var(--highlight-3);
+}
+
+ul li .edit-btn:hover {
+  border-radius: 50%;
+  background: var(--highlight-1);
+  color: var(--highlight-2);
+}
+
+ul li .delete-btn:hover {
+  border-radius: 50%;
+  background: var(--highlight-1);
+  color: var(--delete-hover);
+}
+
+.char-count {
+  display: inline-block;
+  color: var(--text-light);
+  position: relative;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: x-small;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.char-count.visible {
+  opacity: 1;
+}
+
+#auth-container {
+  max-width: 400px;
+  margin: 64px auto;
+  padding: 32px;
+  background: var(--panel-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Delius Swash Caps", cursive;
+}
+
+#auth-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  background-image: linear-gradient(180deg,
+      var(--highlight-1),
+      var(--highlight-3),
+      var(--highlight-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 40px;
+  animation: none;
+  user-select: none;
+}
+
+#auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+#auth-container input[type="text"],
+#auth-container input[type="password"] {
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+
+#auth-container input:focus {
+  outline: none;
+  border-color: var(--highlight-3);
+}
+
+#auth-container button {
+  padding: 12px;
+  font-size: 20px;
+  background: var(--highlight-2);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+
+#auth-container button:hover {
+  background: var(--highlight-1);
+  color: #000;
+}
+
+header.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+@media (max-width: 480px) {
+  #auth-container {
+    margin: 32px 16px;
+    padding: 24px;
+  }
+}
+
+body {
+  background: var(--dark-bg);
+  margin: 0;
+  padding: 0;
+  font-family: "Delius Swash Caps", cursive;
+}
+
+#logout-btn {
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+.feedback {
+  margin: 16px 0 10px 0;
+  min-height: 24px;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  transition: opacity 0.4s;
+  opacity: 1;
+}
+
+.feedback.error {
+  color: #fff;
+  background: #ff0033;
+  border-radius: 6px;
+  padding: 6px 10px;
+  opacity: 0.9;
+}
+
+.feedback.success {
+  color: #fff;
+  background: #04b554;
+  border-radius: 6px;
+  padding: 6px 10px;
+  opacity: 0.9;
+}
+
+.feedback.hidden {
+  opacity: 0;
+}
