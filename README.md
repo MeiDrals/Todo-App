@@ -29,8 +29,8 @@ El objetivo de Todo-App-Neon es servir como punto de partida para desarrolladore
 
 ```bash
 # Clona el repositorio
-git clone https://github.com/MeiDrals/Todo-App-Neon.git
-cd Todo-App-Neon
+git clone https://github.com/MeiDrals/Todo-App.git
+cd Todo-App
 
 # Instala dependencias y arranca la aplicación
 docker-compose up --build
