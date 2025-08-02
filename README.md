@@ -1,10 +1,10 @@
-# Todo-App-Neon
+# Todo-App
 
 Una aplicación sencilla para gestionar tareas pendientes (to-do list) con una interfaz limpia y funcionalidades de añadir, editar y eliminar tareas.
 
 ## Descripción
 
-Todo-App-Neon permite a los usuarios registrarse, iniciar sesión y gestionar sus tareas de forma personalizada. Cada usuario cuenta con su propia lista de tareas, almacenadas de forma segura en la base de datos.
+Todo-App permite a los usuarios registrarse, iniciar sesión y gestionar sus tareas de forma personalizada. Cada usuario cuenta con su propia lista de tareas, almacenadas de forma segura en la base de datos.
 
 ## Características principales
 
@@ -23,7 +23,7 @@ Todo-App-Neon permite a los usuarios registrarse, iniciar sesión y gestionar su
 
 ## Propósito y detalles
 
-El objetivo de Todo-App-Neon es servir como punto de partida para desarrolladores que quieran implementar una aplicación full-stack con autenticación de usuarios y CRUD básico. Ofrece una arquitectura modular y código comentado para facilitar la comprensión y la extensión de funcionalidades.
+El objetivo de Todo-App es servir como punto de partida para desarrolladores que quieran implementar una aplicación full-stack con autenticación de usuarios y CRUD básico. Ofrece una arquitectura modular y código comentado para facilitar la comprensión y la extensión de funcionalidades.
 
 ## Instalación y ejecución
 

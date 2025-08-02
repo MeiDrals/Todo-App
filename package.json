@@ -1,5 +1,5 @@
 {
-  "name": "todo-app-neon",
+  "name": "todo-app",
   "version": "1.0.0",
   "description": "Gestor de tareas con CRUD completo, registro y login de usuarios, autenticación por sesiones y almacenamiento seguro en base de datos",
   "main": "index.js",
