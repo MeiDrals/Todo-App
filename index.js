@@ -1,6 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const { Pool } = require("pg");
+
+require("dotenv").config();
+
+// Configuración de la conexión a la base de datos
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
+});
+
+// Verificar conexión a la base de datos
+pool
+  .query("SELECT NOW()")
+  .then(() => console.log("✔️ Conexión a la base de datos establecida"))
+  .catch((err) => console.error("❌ Error conectando a la BD:", err));
 
 const app = express();
 
