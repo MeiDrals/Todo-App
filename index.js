@@ -6,21 +6,21 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 // Configuración de la conexión a la base de datos
+const isProduction = process.env.NODE_ENV === "production";
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
 });
 
 // Verificar conexión a la base de datos
 pool
   .query("SELECT NOW()")
   .then(() => console.log("✔️ Conexión a la base de datos establecida"))
-  .catch((err) => console.error("❌ Error conectando a la BD:", err));
+  .catch((err) =>
+    console.error("❌ Error conectando a la BD (SELECT NOW):", err.stack)
+  );
 
 const app = express();
-
-// Middleware
-app.use(express.static(path.join(__dirname, "public")));
 
 // CORS
 app.use(cors());
@@ -28,6 +28,9 @@ app.use(cors());
 
 // JSON
 app.use(express.json());
+
+// Middleware
+app.use(express.static(path.join(__dirname, "public")));
 
 // Rutas
 const authRouter = require("./routes/auth");

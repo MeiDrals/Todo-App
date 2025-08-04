@@ -5,6 +5,8 @@ const db = require("../db");
 
 // POST /auth/register
 router.post("/register", async (req, res) => {
+  console.log("→ [REGISTER] req.body:", req.body);
+
   const { username, password } = req.body;
   if (!username || !password)
     return res.status(400).json({ error: "Usuario y contraseña requeridos" });
@@ -17,6 +19,7 @@ router.post("/register", async (req, res) => {
     );
     res.status(201).json(rows[0]);
   } catch (err) {
+    console.error("🔥 [REGISTER] Error interno:", err.stack);
     if (err.code === "23505")
       return res.status(409).json({ error: "Usuario ya existe" });
     res.status(500).json({ error: "Error interno del servidor" });
@@ -25,6 +28,8 @@ router.post("/register", async (req, res) => {
 
 // POST /auth/login
 router.post("/login", async (req, res) => {
+  console.log("→ [LOGIN] req.body:", req.body);
+
   const { username, password } = req.body;
   if (!username || !password)
     return res.status(400).json({ error: "Usuario y contraseña requeridos" });
@@ -47,6 +52,7 @@ router.post("/login", async (req, res) => {
     });
     res.json({ token });
   } catch (err) {
+    console.error("🔥 [LOGIN] Error interno:", err.stack);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
