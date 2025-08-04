@@ -20,9 +20,10 @@ router.post("/register", async (req, res) => {
     res.status(201).json(rows[0]);
   } catch (err) {
     console.error("🔥 [REGISTER] Error interno:", err.stack);
-    if (err.code === "23505")
+    if (err.code === "23505") {
       return res.status(409).json({ error: "Usuario ya existe" });
-    res.status(500).json({ error: "Error interno del servidor" });
+    }
+    return res.status(500).json({ error: err.message, stack: err.stack });
   }
 });
 
@@ -53,7 +54,7 @@ router.post("/login", async (req, res) => {
     res.json({ token });
   } catch (err) {
     console.error("🔥 [LOGIN] Error interno:", err.stack);
-    res.status(500).json({ error: "Error interno del servidor" });
+    return res.status(500).json({ error: err.message, stack: err.stack });
   }
 });
 
