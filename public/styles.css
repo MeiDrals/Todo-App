@@ -406,3 +406,20 @@ body {
 .feedback.hidden {
   opacity: 0;
 }
+
+.footer {
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: #ddd;
+}
