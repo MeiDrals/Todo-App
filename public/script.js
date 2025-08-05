@@ -1,6 +1,5 @@
-const API_URL = "http://localhost:3000";
-const AUTH_URL = `${API_URL}/auth`;
-const TASKS_URL = `${API_URL}/tasks`;
+const AUTH_URL = `/auth`;
+const TASKS_URL = `/tasks`;
 
 document.addEventListener("DOMContentLoaded", () => {
   // Contenedores
