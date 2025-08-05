@@ -32,8 +32,14 @@ El objetivo de Todo-App es servir como punto de partida para desarrolladores que
 git clone https://github.com/MeiDrals/Todo-App.git
 cd Todo-App
 
-# Instala dependencias y arranca la aplicación
-docker-compose up --build
+# Instala node modules y configura variables de entorno
+npm install
+Configura .env según tus necesidades
+
+# Iniciar servicio
+npm start
+
+(Hay que tener en cuenta que la última versión está adaptada para funcionar en Render, sin CORS y con rutas relativas, para desplegar en local hay que cambiar esta configuración)
 ```
 
 ## Licencia
